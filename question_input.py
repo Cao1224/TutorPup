@@ -31,13 +31,20 @@ class inputPage(tk.Frame):
             c_entry.delete(0, tk.END)
             correct_entry.delete(0, tk.END)
 
+            if correct_answer == 'A':
+                correct_answer_text = answer_a
+            elif correct_answer == 'B':
+                correct_answer_text = answer_b
+            elif correct_answer == 'C':
+                correct_answer_text = answer_c
+            
             # Add data to Supabase
             data = {
                 "Question": question,
                 "option_a": answer_a,
                 "option_b": answer_b,
                 "option_c": answer_c,
-                "correct_answer": correct_answer
+                "correct_answer": correct_answer_text
             }
             response = supabase.table('question_bank').insert(data).execute()
             print("Response:", response)  # For debugging
